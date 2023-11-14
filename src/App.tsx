@@ -4,6 +4,7 @@ import './App.css';
 import api, { IDataRequest, IDataResponse, STATUS_CODE } from './framework/providers/api';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { Button } from '@mui/material';
+import { Link } from 'react-router-dom'
 
 const App = () => {
   const [clientes, setClientes] = useState<any>([]);
@@ -69,6 +70,9 @@ const App = () => {
           onClick={() => {
             carregarClientes();
           }}>Atualizar Lista</Button>
+      </div>
+      <div>
+        <Link to={"/teste"}>Teste</Link>
       </div>
     </div>
   );
