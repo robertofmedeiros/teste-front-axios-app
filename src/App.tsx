@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import api, { IDataRequest, IDataResponse, STATUS_CODE } from './framework/providers/api';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { Button } from '@mui/material';
-import { Link } from 'react-router-dom'
+import { DataGrid, GridColDef, GridRowParams } from '@mui/x-data-grid';
+import { Button, Icon, IconButton } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom'
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const App = () => {
   const [clientes, setClientes] = useState<any>([]);
+  const navigate = useNavigate();
 
   const carregarClientes = async () => {
 
@@ -45,6 +47,20 @@ const App = () => {
       headerName: 'Data Nascimento',
       width: 300,
     },
+    {
+      field: 'actions',
+      headerName: 'Ações',
+      renderCell: (params) => (
+        <IconButton
+          key={`icone-row-${params.id}`}
+          size="small"
+          onClick={() => {
+
+          }} >
+            <DeleteIcon color="error"/>
+          </IconButton>
+      )
+    }
   ]
 
   return (
@@ -62,7 +78,11 @@ const App = () => {
           }}
           pageSizeOptions={[5]}
           checkboxSelection
-          disableRowSelectionOnClick />
+          disableRowSelectionOnClick
+          onRowDoubleClick={(params: GridRowParams) => {
+            console.log(">>>2", params.id);
+            navigate(`/teste/${params.id}`);
+          }} />
       </div>
       <div>
         <Button 
