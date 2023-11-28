@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 
 import PaginaTeste from './PaginaTeste';
+import HeaderApp from './components/HeaderApp';
 
 const router = createBrowserRouter([
   {

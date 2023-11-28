@@ -6,6 +6,7 @@ import { DataGrid, GridColDef, GridRowParams } from '@mui/x-data-grid';
 import { Button, Icon, IconButton } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom'
 import DeleteIcon from '@mui/icons-material/Delete';
+import HeaderApp from './components/HeaderApp';
 
 const App = () => {
   const [clientes, setClientes] = useState<any>([]);
@@ -57,44 +58,46 @@ const App = () => {
           onClick={() => {
 
           }} >
-            <DeleteIcon color="error"/>
-          </IconButton>
+          <DeleteIcon color="error" />
+        </IconButton>
       )
     }
   ]
 
   return (
-    <div>
+    <HeaderApp>
       <div>
-        <DataGrid
-          columns={columns}
-          rows={clientes}
-          initialState={{
-            pagination: {
-              paginationModel: {
-                pageSize: 5,
+        <div>
+          <DataGrid
+            columns={columns}
+            rows={clientes}
+            initialState={{
+              pagination: {
+                paginationModel: {
+                  pageSize: 5,
+                },
               },
-            },
-          }}
-          pageSizeOptions={[5]}
-          checkboxSelection
-          disableRowSelectionOnClick
-          onRowDoubleClick={(params: GridRowParams) => {
-            console.log(">>>2", params.id);
-            navigate(`/teste/${params.id}`);
-          }} />
+            }}
+            pageSizeOptions={[5]}
+            checkboxSelection
+            disableRowSelectionOnClick
+            onRowDoubleClick={(params: GridRowParams) => {
+              console.log(">>>2", params.id);
+              navigate(`/teste/${params.id}`);
+            }} />
+        </div>
+        <div>
+          <Button
+            variant="contained"
+            onClick={() => {
+              carregarClientes();
+            }}>Atualizar Lista</Button>
+        </div>
+        <div>
+          <Link to={"/teste"}>Teste</Link>
+        </div>
       </div>
-      <div>
-        <Button 
-          variant="contained"
-          onClick={() => {
-            carregarClientes();
-          }}>Atualizar Lista</Button>
-      </div>
-      <div>
-        <Link to={"/teste"}>Teste</Link>
-      </div>
-    </div>
+    </HeaderApp>
   );
 }
 
