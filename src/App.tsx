@@ -15,7 +15,7 @@ const App = () => {
   const carregarClientes = async () => {
 
     const request: IDataRequest = {
-      url: "/clientes/carregar",
+      url: "/clientes/",
     }
 
     const response: IDataResponse = await api.get(request);
@@ -40,7 +40,7 @@ const App = () => {
       headerName: 'Nome',
     },
     {
-      field: 'sobrenome',
+      field: 'sobreNome',
       headerName: 'Sobre Nome',
     },
     {
