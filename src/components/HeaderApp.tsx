@@ -1,11 +1,12 @@
 import { AppBar, Box, Button, Drawer, IconButton, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from "@mui/material";
-import { FC, ReactNode, useState } from "react";
+import { FC, ReactNode, useEffect, useState } from "react";
 import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Router, useNavigate } from "react-router";
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import PaginaTeste from "../PaginaTeste";
+import { LocalStorage } from "../utils/LocalStorage";
 
 interface HeaderAppProperties {
     children: ReactNode;
@@ -13,8 +14,15 @@ interface HeaderAppProperties {
 
 const HeaderApp: FC<HeaderAppProperties> = ({ children }) => {
     const [open, setOpen] = useState<boolean>(false);
-
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const isLogin = LocalStorage.get("login.app");
+        if(!isLogin){
+            navigate("/login");
+        }
+      }, []);
+
     return <>
         <div style={{ maxWidth: "100%" }}>
             <div>

@@ -9,6 +9,7 @@ import {
 
 import PaginaTeste from './PaginaTeste';
 import HeaderApp from './components/HeaderApp';
+import Login from './pages/Login';
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,11 @@ const router = createBrowserRouter([
   {
     path: "/teste",
     element: <PaginaTeste />
-  }
+  },
+  {
+    path: "/login",
+    element: <Login />
+  },
 ]);
 
 const root = ReactDOM.createRoot(
